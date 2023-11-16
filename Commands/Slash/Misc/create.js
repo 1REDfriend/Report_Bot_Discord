@@ -1,14 +1,9 @@
-const {
-    CommandInteraction,
-    ApplicationCommandType,
-    PermissionFlagsBits,
-} = require("discord.js");
+const { ApplicationCommandType, Permissions, PermissionFlagsBits } = require("discord.js");
 const { Bot } = require("../../../handlers/Client");
-
 
 module.exports = {
     name: "create",
-    descriptions: 'create your group',
+    description: 'Create your group',
     userPermissions: PermissionFlagsBits.SendMessages,
     botPermissions: PermissionFlagsBits.SendMessages,
     category: "Misc",
@@ -22,5 +17,22 @@ module.exports = {
         },
     ],
 
-    run: async ()
-}
+    run: async (client, interaction,guild) => {
+        // Retrieve the group name from the interaction options
+        const groupName = interaction.options.getString('groupname');
+    
+        // Check if groupName is undefined or an empty string
+        if (!groupName || groupName.trim() === '') {
+            return await interaction.reply('Please provide a valid group name.');
+        }
+        try {
+            // Create a new text channel in the same category as the command was invoked
+            console.log(interaction)
+    
+            // You can do more things here, such as setting permissions for the new channel, etc.
+        } catch (error) {
+            console.error(`Error creating channel: ${error.message}`);
+        }
+    },
+    
+};
