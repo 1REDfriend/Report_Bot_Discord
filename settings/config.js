@@ -1,4 +1,5 @@
 const { Colors } = require("discord.js");
+require('dotenv').config();
 
 module.exports = {
   TOKEN: process.env.TOKEN || "",
